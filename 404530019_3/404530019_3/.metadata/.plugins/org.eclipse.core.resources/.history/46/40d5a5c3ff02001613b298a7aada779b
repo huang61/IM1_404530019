@@ -1,0 +1,117 @@
+import java.lang.Math;
+import java.util.ArrayList;
+
+public class GradeAnalyzer {
+	
+	
+	double sum =0;
+	double avg = 0;
+	double variance = 0;
+	double SD =0;
+	ArrayList<Double> gradelist=new ArrayList<>();
+			
+	int Aplus = 0;
+	int A  = 0;
+	int Aminus = 0;
+	int Bplus = 0;
+	int B  = 0;
+	int Bminus = 0;
+	int Cplus = 0;
+	int C  = 0;
+	int Cminus =0;
+	int D = 0;
+	int F  = 0;
+													
+    boolean isValidGrade(double aGrade){
+    	if (aGrade >= 0 && aGrade <=110)
+    		return true;
+    	else 
+    		return false;
+    }
+	
+    
+    
+    
+    
+    
+    
+    void addGrade(double aGrade){
+    	if (isValidGrade(aGrade)==true)
+    	{
+    		sum = sum + aGrade;    		
+    		gradelist.add(aGrade);
+    		
+			if ( aGrade >=98 )
+			{
+				Aplus++;
+			}
+			else if ( aGrade < 98 && aGrade >= 92 )
+			{
+				A++;
+			}
+			else if ( aGrade < 92 && aGrade >= 90 )
+			{
+				Aminus++;
+				
+			}
+			else if ( aGrade < 90 && aGrade >= 88 )
+			{
+				Bplus++;
+			}
+			else if ( aGrade < 88 && aGrade >= 82 )
+			{
+				
+				B++;
+			}
+			else if ( aGrade < 82 && aGrade >= 80 )
+			{
+				Bminus++;
+			
+			}
+			else if ( aGrade < 80 && aGrade >= 78 )
+			{
+				
+				Cplus++;
+			}
+			else if ( aGrade < 78 && aGrade >= 72 )
+			{
+				C++;
+				
+			}
+			else if ( aGrade < 72 && aGrade >= 70 )
+			{
+				
+				Cminus++;
+			}
+			else if ( aGrade < 70 && aGrade >= 60 )
+			{
+				D++;
+				
+			}
+			else if ( aGrade < 60 )
+			{
+				F++;
+			}
+    	}
+    		
+    }
+    
+    void analyzeGrades(){
+    	avg=sum/gradelist.size();
+    	for(int i=0;i<gradelist.size();i++)
+		{
+			variance+=Math.pow(gradelist.get(i)-avg, 2);//變異數
+		}
+		SD=Math.sqrt(variance/gradelist.size());//標準差
+    	
+    }
+    
+    
+    
+    public String toString(){
+		return "You entered "+gradelist.size()+" valid grades from 0 to 110. Invalid grades are ignored!\n\nThe average ="
+    +avg+" with a standard deviation ="+SD+"\n\nThe grade distribution is:\n\nA+="+Aplus+"\nA="+A+"\nA-="+Aminus+"\nB+="
+    +Bplus+"\nB="+B+"\nB-="+Bminus+"\nC+="+Cplus+"\nC="+C+"\nD="+D+"\nF="+F;
+	
+    }
+ 	}

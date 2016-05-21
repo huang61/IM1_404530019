@@ -1,0 +1,42 @@
+import javax.swing.JOptionPane;
+
+public class GradeAnalyzerTester {
+
+	public static void main(String[] args) {
+		
+		String input = "" ;
+		
+		GradeAnalyzer gradeanalyzer = new GradeAnalyzer();
+		double aGrade=0;
+		
+		do {
+			
+			input = (String)JOptionPane.showInputDialog(null, 
+					"Please Enter Grades","Grade Analyzer",JOptionPane.QUESTION_MESSAGE,null,null,"Enter Here."); 
+			if(input.equals("Q")||input.equals("q"))//若成績輸入完  輸入q or Q就能計算
+			{
+				break;
+			}
+			try
+			{
+				aGrade=Double.parseDouble(input);//將輸入的String aGrade轉換成double aGrade
+				gradeanalyzer.addGrade(aGrade);
+			}
+			catch(Exception e){}
+			
+			
+			
+		}while (input!="Q" || input!="q") ;
+		
+		if(gradeanalyzer.gradelist.size()>=2){
+			gradeanalyzer.analyzeGrades();
+			System.out.println(gradeanalyzer.toString());
+		}
+		else		
+			System.out.println("You did not enter enough grades to analyze. Please enter at least 2 valid grades.");			
+		
+		
+
+	}
+
+}
